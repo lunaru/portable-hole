@@ -36,7 +36,7 @@ module Reamaze
                             :conditions => {:context => '#{eav}'},
                             :extend     => AssociationExtensions,
                             :inverse_of => :model,
-                            :dependent  => :destroy
+                            :dependent  => :delete_all
 
           accepts_nested_attributes_for :_#{eav}, :allow_destroy => true
 
