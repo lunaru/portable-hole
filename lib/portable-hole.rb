@@ -51,6 +51,7 @@ module Reamaze
 
           def #{eav}=(hash)
             array = []
+            hash = hash.stringify_keys
 
             deletables = self._#{eav}.reject {|x| hash.keys.include? x.key}
 
