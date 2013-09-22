@@ -31,12 +31,13 @@ module Reamaze
 
         class_eval <<-end_eval
           # Define the has_many relationship
-          has_many :_#{eav}, :class_name => 'PortableValue',
-                            :as         => :model,
-                            :conditions => {:context => '#{eav}'},
-                            :extend     => AssociationExtensions,
-                            :inverse_of => :model,
-                            :dependent  => :delete_all
+          has_many :_#{eav}, 
+            -> { where(context: '#{eav}') },
+            :class_name => 'PortableValue',
+            :as         => :model,
+            :extend     => AssociationExtensions,
+            :inverse_of => :model,
+            :dependent  => :delete_all
 
           accepts_nested_attributes_for :_#{eav}, :allow_destroy => true
 
