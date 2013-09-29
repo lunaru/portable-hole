@@ -32,10 +32,9 @@ module Reamaze
         class_eval <<-end_eval
           # Define the has_many relationship
           has_many :_#{eav}, 
-            -> { where(context: '#{eav}') },
+            -> { where(context: '#{eav}').extending(AssociationExtensions) },
             :class_name => 'PortableValue',
             :as         => :model,
-            :extend     => AssociationExtensions,
             :inverse_of => :model,
             :dependent  => :delete_all
 
@@ -65,7 +64,7 @@ module Reamaze
                   array << {:id => current.id, :key => k, :value => v}
                 end
               else
-                array << {:key => k, :value => v}
+                array << {:key => k, :value => v, :context => '#{eav}'}
               end
             end
 
@@ -94,7 +93,8 @@ module Reamaze
 
         if pref.blank?
           pref = prefs.build :key      => name,
-                             :value    => value
+                             :value    => value,
+                             :context  => preferential[1..-1]
         else
           pref.value = value
         end

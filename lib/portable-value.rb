@@ -2,7 +2,7 @@ class PortableValue < ActiveRecord::Base
   belongs_to        :model, :polymorphic => true
   belongs_to        :group, :polymorphic => true
 
-  before_validation :set_group
+  before_save       :set_group
 
   def set_group
     config = eval(self.model_type).eav_configuration
