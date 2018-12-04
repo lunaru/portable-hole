@@ -81,7 +81,7 @@ module Reamaze
 
     # Make methods available to ActiveRecord models in the instance context
     module InstanceMethods
-      def set_preferential(preferential, name, value, do_preprocess = false)
+      def set_portable_value(preferential, name, value, do_preprocess = false)
         preferential = Helpers.normalize(preferential)
         name    = Helpers.normalize(name)
 
@@ -102,7 +102,7 @@ module Reamaze
         pref.value
       end
 
-      def get_preferential(preferential, name, do_postprocess = false)
+      def get_portable_value(preferential, name, do_postprocess = false)
         preferential = Helpers.normalize(preferential)
         name         = Helpers.normalize(name)
 

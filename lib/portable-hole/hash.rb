@@ -7,11 +7,11 @@ module Reamaze
       end
 
       def [] key
-        @owner.get_preferential @preferential, key.to_s, true
+        @owner.get_portable_value @preferential, key.to_s, true
       end
 
       def []= key, value
-        @owner.set_preferential @preferential, key.to_s, value, true
+        @owner.set_portable_value @preferential, key.to_s, value, true
         super key.to_s, value
       end
 

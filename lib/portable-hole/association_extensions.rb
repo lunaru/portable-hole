@@ -10,11 +10,11 @@ module Reamaze
       end
 
       def []=(name, value)
-        @association.owner.set_preferential(@association.reflection.name, name, value)
+        @association.owner.set_portable_value(@association.reflection.name, name, value)
       end
 
       def [](name)
-        @association.owner.get_preferential(@association.reflection.name, name)
+        @association.owner.get_portable_value(@association.reflection.name, name)
       end
 
       def valid?
